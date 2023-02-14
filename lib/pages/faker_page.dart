@@ -1,11 +1,16 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:intl/intl.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
-class FakerPage extends StatelessWidget {
-  FakerPage({Key? key}) : super(key: key);
+class FakerPage extends StatefulWidget {
+  const FakerPage({Key? key}) : super(key: key);
+
+  @override
+  State<FakerPage> createState() => _FakerPageState();
+}
+
+class _FakerPageState extends State<FakerPage> {
   var faker = Faker();
 
   @override
@@ -19,9 +24,9 @@ class FakerPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(8),
             ),
             height: 50,
