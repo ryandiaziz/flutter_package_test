@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter_package_test/pages/faker_page.dart';
+import 'package:flutter_package_test/pages/profile_page.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -27,11 +28,7 @@ class _NavigationState extends State<Navigation> {
         "Message",
       ),
     ),
-    const Center(
-      child: Text(
-        "Profile",
-      ),
-    ),
+    const ProfilePage()
   ];
   int index = 0;
   @override
