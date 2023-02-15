@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_package_test/pages/faker_page.dart';
+import 'package:flutter_package_test/pages/introduction_page.dart';
 import 'package:flutter_package_test/pages/navigation.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Navigation(),
+      home: IntroductionPage(),
     );
   }
 }
