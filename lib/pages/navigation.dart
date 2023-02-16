@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter_package_test/pages/dropdown_search_page.dart';
 import 'package:flutter_package_test/pages/faker_page.dart';
 import 'package:flutter_package_test/pages/profile_page.dart';
 
@@ -13,11 +14,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   List<Widget> widgets = [
     const FakerPage(),
-    const Center(
-      child: Text(
-        "Discovery",
-      ),
-    ),
+    DropDownSearchPage(),
     const Center(
       child: Text(
         "Add",
