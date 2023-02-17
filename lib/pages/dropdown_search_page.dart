@@ -25,14 +25,25 @@ class DropDownSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dropdown Search"),
+        title: const Text("Dropdown Search"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: DropdownSearch(
+        child: DropdownSearch<Map<String, dynamic>>(
+          validator: (value) {
+            if (value == null) {
+              return 'required filed';
+            } else {
+              return value['country'];
+            }
+          },
+          onChanged: (value) => print(value),
+          popupProps: const PopupProps.menu(
+            fit: FlexFit.tight,
+            showSearchBox: true,
+          ),
           showClearButton: true,
-          onChanged: print,
-          selectedItem: "Bazil",
+          selectedItem: data[0],
           items: data,
         ),
       ),

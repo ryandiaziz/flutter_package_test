@@ -21,17 +21,27 @@ class IntroductionPage extends StatelessWidget {
       },
       pages: [
         PageViewModel(
-          title: "Title of introduction page",
+          title: "Title of introduction page 1",
           body: "Welcome to the app! This is a description of how it works.",
           image: Center(
-            child: Lottie.asset("assets/lotties/intro.json"),
+            child: Container(
+              padding: const EdgeInsets.only(top: 50),
+              height: 300,
+              width: 300,
+              child: Lottie.asset("assets/lotties/intro.json"),
+            ),
           ),
         ),
         PageViewModel(
-          title: "Title of introduction page",
+          title: "Title of introduction page 2",
           body: "Welcome to the app! This is a description of how it works.",
           image: Center(
-            child: Lottie.asset("assets/lotties/food.json"),
+            child: Container(
+              padding: const EdgeInsets.only(top: 50),
+              height: 300,
+              width: 300,
+              child: Lottie.asset("assets/lotties/food.json"),
+            ),
           ),
         )
       ],
