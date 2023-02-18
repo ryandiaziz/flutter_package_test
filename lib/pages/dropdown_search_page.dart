@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter_package_test/models/province_models.dart';
+import 'package:flutter_package_test/models/districts.dart';
+import 'package:flutter_package_test/models/provinces.dart';
+import 'package:flutter_package_test/models/regencies.dart';
 import 'package:http/http.dart' as http;
 
 class DropDownSearchPage extends StatefulWidget {
@@ -13,11 +15,11 @@ class DropDownSearchPage extends StatefulWidget {
 }
 
 class _DropDownSearchPageState extends State<DropDownSearchPage> {
-  List<Map<String, dynamic>> allProvinces = [];
+  List<Provinces> allProvinces = [];
 
-  List<Map<String, dynamic>> allRegencies = [];
+  List<Regencies> allRegencies = [];
 
-  List<Map<String, dynamic>> allDistricts = [];
+  List<Districts> allDistricts = [];
 
   String? idProvince;
 
@@ -34,7 +36,7 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: DropdownSearch<Map<String, dynamic>>(
+            child: DropdownSearch<Provinces>(
               asyncItems: (text) async {
                 var response = await http.get(
                   Uri.parse(
@@ -42,36 +44,35 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
                 );
                 if (response.statusCode == 200) {
                   List data = json.decode(response.body) as List;
-                  data.forEach((element) {
-                    allProvinces.add(element);
-                  });
+                  for (var element in data) {
+                    allProvinces.add(Provinces.fromJson(element));
+                  }
                   return allProvinces;
                 } else {
                   return [];
                 }
               },
               dropdownBuilder: (context, selectedItem) => Text(
-                selectedItem?["name"] ?? "Pilih data",
+                selectedItem?.name ?? "Pilih data",
               ),
               validator: (value) {
                 if (value == null) {
                   return 'required filed';
                 } else {
-                  return value['name'];
+                  return value.name;
                 }
               },
               onChanged: (value) {
                 setState(() {
-                  idProvince = value!["id"];
+                  idProvince = value!.id;
                 });
-                print(value!["id"]);
               },
               popupProps: PopupProps.menu(
                 fit: FlexFit.tight,
                 showSearchBox: true,
                 itemBuilder: (context, item, isSelected) {
                   return ListTile(
-                    title: Text(item['name'].toString()),
+                    title: Text(item.name.toString()),
                   );
                 },
               ),
@@ -82,7 +83,7 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: DropdownSearch<Map<String, dynamic>>(
+            child: DropdownSearch<Regencies>(
               asyncItems: (text) async {
                 var response = await http.get(
                   Uri.parse(
@@ -90,33 +91,33 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
                 );
                 if (response.statusCode == 200) {
                   List data = json.decode(response.body) as List;
-                  data.forEach((element) {
-                    allRegencies.add(element);
-                  });
+                  for (var element in data) {
+                    allRegencies.add(Regencies.fromJson(element));
+                  }
                   return allRegencies;
                 } else {
                   return [];
                 }
               },
               dropdownBuilder: (context, selectedItem) => Text(
-                selectedItem?["name"] ?? "Pilih data",
+                selectedItem?.name ?? "Pilih data",
               ),
               validator: (value) {
                 if (value == null) {
                   return 'required filed';
                 } else {
-                  return value['name'];
+                  return value.name;
                 }
               },
               onChanged: (value) => setState(() {
-                idRegency = value!['id'];
+                idRegency = value!.id;
               }),
               popupProps: PopupProps.menu(
                 fit: FlexFit.tight,
                 showSearchBox: true,
                 itemBuilder: (context, item, isSelected) {
                   return ListTile(
-                    title: Text(item['name'].toString()),
+                    title: Text(item.name.toString()),
                   );
                 },
               ),
@@ -128,7 +129,7 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
           Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            child: DropdownSearch<Map<String, dynamic>>(
+            child: DropdownSearch<Districts>(
               asyncItems: (text) async {
                 var response = await http.get(
                   Uri.parse(
@@ -136,22 +137,22 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
                 );
                 if (response.statusCode == 200) {
                   List data = json.decode(response.body) as List;
-                  data.forEach((element) {
-                    allDistricts.add(element);
-                  });
+                  for (var element in data) {
+                    allDistricts.add(Districts.fromJson(element));
+                  }
                   return allDistricts;
                 } else {
                   return [];
                 }
               },
               dropdownBuilder: (context, selectedItem) => Text(
-                selectedItem?["name"] ?? "Pilih data",
+                selectedItem?.name ?? "Pilih data",
               ),
               validator: (value) {
                 if (value == null) {
                   return 'required filed';
                 } else {
-                  return value['name'];
+                  return value.name;
                 }
               },
               onChanged: (value) => print(value),
@@ -160,7 +161,7 @@ class _DropDownSearchPageState extends State<DropDownSearchPage> {
                 showSearchBox: true,
                 itemBuilder: (context, item, isSelected) {
                   return ListTile(
-                    title: Text(item['name'].toString()),
+                    title: Text(item.name.toString()),
                   );
                 },
               ),
