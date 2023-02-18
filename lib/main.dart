@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_package_test/pages/dropdown_search_page.dart';
 import 'package:flutter_package_test/pages/faker_page.dart';
 import 'package:flutter_package_test/pages/introduction_page.dart';
 import 'package:flutter_package_test/pages/navigation.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: IntroductionPage(),
+      home: DropDownSearchPage(),
     );
   }
 }
